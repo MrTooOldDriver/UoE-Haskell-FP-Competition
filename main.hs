@@ -1,9 +1,16 @@
 import Graphics.UI.GLUT
 
 --stack ghc -- --make main.hs
+--credit LSystem.hs
 
 myPoints :: [(GLfloat,GLfloat,GLfloat)]
-myPoints = [ (sin (2*pi*k/12), cos (2*pi*k/12), 0) | k <- [1..12] ]
+myPoints = [ (0.1*k , 0.1*k , 0) | k <- [0..10] ]
+
+-- theBGcolor :: GL.Color3 GL.GLfloat
+-- theBGcolor = penToRGB white
+
+-- vertex3f :: (Float, Float, Float) -> (GLfloat,GLfloat,GLfloat)
+-- vertex3f (x,y,z) = vertex $ Vertex3 x y (z :: GLfloat)
 
 main :: IO ()
 main = do
@@ -18,4 +25,4 @@ clear [ColorBuffer]
 renderPrimitive Points $
     mapM_ (\(x, y, z) -> vertex $ Vertex3 x y z) myPoints
 flush
-                                 
+                                
