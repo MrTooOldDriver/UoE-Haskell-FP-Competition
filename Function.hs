@@ -1,5 +1,6 @@
 module Function (
-
+    pointBezier,
+    test
    )
     where
 
@@ -30,4 +31,7 @@ pointBezier p0 p1 p2 p3 t = Pnt (x0*sf0 + x1*sf1 + x2*sf2 + x3*sf3) (y0*sf0 + y1
         y1 = y p1
         y2 = y p2
         y3 = y p3
+
+test :: Float -> Pnt
+test t = pointBezier (Pnt 0.0 0.0) (Pnt 0.0 1.0) (Pnt 1.0 1.0) (Pnt 1.0 0.0) t
 

@@ -1,5 +1,6 @@
 import Graphics.UI.GLUT
 import qualified Graphics.Rendering.OpenGL as GL
+import Function
 -- import LSystem For future use
 
 --stack ghc -- --make main.hs
