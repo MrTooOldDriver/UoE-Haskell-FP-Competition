@@ -3,7 +3,8 @@ University of Edinburgh Inf1A FP Competition work
 
 TODO
 
-Basis Windows
-Point drawer for OpenGL
-Bezier Curves
+Basis Windows ...Done
+Point drawer for OpenGL ...Done
+Bezier Curves ...Done
 Colour Transformation
+Some Artwork :)
