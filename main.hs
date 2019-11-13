@@ -39,7 +39,7 @@ myPoints :: [(GLfloat,GLfloat,GLfloat)]
 myPoints = [ (0.1*k , 0.1*k , 0) | k <- [0..10] ]
 
 myBezier :: [(GLfloat,GLfloat,GLfloat)]
-myBezier = [pntToPoint (test t)| t <- map (*0.1) [0..10] ]
+myBezier = [pntToPoint (test t)| t <- map (*0.0001) [0..10000] ]
 
 pntToPoint :: Pnt -> (GLfloat,GLfloat,GLfloat)
 pntToPoint (Pnt a b) = (a,b,0)
@@ -78,7 +78,7 @@ display :: DisplayCallback
 display = do 
     clear [ColorBuffer]
     loadIdentity
-    background -- for futuer use
+    -- background -- for futuer use
     renderPrimitive Points $
         mapM_ (\(x, y, z) -> vertex $ Vertex3 x y z) myBezier
     swapBuffers
