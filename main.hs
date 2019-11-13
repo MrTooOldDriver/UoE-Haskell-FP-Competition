@@ -110,7 +110,7 @@ genDrawList :: [(Pnt,Pnt,Pnt,Pnt)] -> [(GLfloat,GLfloat,GLfloat)]
 genDrawList = concatMap bezier
 
 -- BezierLineGruop1 = genDrawList (pointsListToPntList pointsList)
-
+--Helper block--
 
 pntToPoint :: Pnt -> (GLfloat,GLfloat,GLfloat)
 pntToPoint (Pnt a b) = (a,b,0)
@@ -131,6 +131,8 @@ background = do GL.color theBGcolor
 
 theBGcolor :: GL.Color3 GL.GLfloat
 theBGcolor = GL.Color3 1.0 1.0 1.0
+
+--End of helper block--
 
 -- vertex3f :: (Float, Float, Float) -> (GLfloat,GLfloat,GLfloat)
 -- vertex3f (x,y,z) = vertex $ Vertex3 x y (z :: GLfloat)
@@ -158,6 +160,9 @@ main = do
 --         swapBuffers
 --End of origin--
 
+pSize :: GLfloat
+pSize = 1.2
+
 --testing block--
 display :: DisplayCallback
 display = do 
@@ -166,6 +171,10 @@ display = do
         clear [ColorBuffer]
         loadIdentity
         -- background -- for futuer use
+
+        GL.pointSmooth $= GL.Enabled --smooth
+        GL.pointSize $= pSize
+
         forM_ (genDrawList (pointsListToPntList pointsList)) $ \(x,y,z) ->
                 preservingMatrix $ do
                         color $ Color3 x y z
