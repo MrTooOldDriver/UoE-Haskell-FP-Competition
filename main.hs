@@ -8,13 +8,33 @@ import Control.Monad
 --credit LSystem.hs
 data Pnt = Pnt Float Float
   deriving (Eq,Ord,Show)
+data Colour = Colour Float Float Float
+ deriving (Eq,Ord,Show)
 
 x :: Pnt -> Float
 y :: Pnt -> Float
 x (Pnt a _) = a
 y (Pnt _ b) = b
 
+r :: Colour -> Float
+g :: Colour -> Float
+b :: Colour -> Float
+r (Colour a _ _) = a
+g (Colour _ b _) = b
+b (Colour _ _ c) = c
+
 -- 2 control points Bezier curve
+colourListGen :: Colour -> Colour -> Colour -> Colour -> [(GLfloat,GLfloat,GLfloat)]
+colourListGen c1 c2 c3 c4 = [(r c1 + (co*cdiffR c1 c2),g c1 + (co*cdiffG c1 c2),b c1 + (co*cdiffB c1 c2)) | co <- [0..3333]]
+                            ++
+                            [(r c2 + (co*cdiffR c2 c3),g c2 + (co*cdiffG c2 c3),b c2 + (co*cdiffB c2 c3)) | co <- [0..3333]]
+                            ++
+                            [(r c3 + (co*cdiffR c3 c4),g c3 + (co*cdiffG c3 c4),b c3 + (co*cdiffB c3 c4)) | co <- [0..3333]]
+        where 
+                cdiffR x y = (r y - r x) /3333
+                cdiffG x y = (g y - g x) /3333
+                cdiffB x y = (b y - b x) /3333
+
 
 pointBezier :: Pnt -> Pnt -> Pnt -> Pnt -> Float -> Pnt
 pointBezier p0 p1 p2 p3 t = Pnt (x0*sf0 + x1*sf1 + x2*sf2 + x3*sf3) (y0*sf0 + y1*sf1 + y2*sf2 + y3*sf3)
@@ -51,8 +71,27 @@ myBezier2 :: [(GLfloat,GLfloat,GLfloat)]
 myBezier2 = [pntToPoint (test t)| t <- map (*0.0001) [0..10000] ]
         where test = pointBezier (Pnt (-1.0) 0.0) (Pnt 0.0 0.1) (Pnt 0.0 (-0.1)) (Pnt 1.0 0.0)
 
+--No colour bezier function--
 bezier :: (Pnt,Pnt,Pnt,Pnt) -> [(GLfloat,GLfloat,GLfloat)]
 bezier (a,b,c,d) = [pntToPoint (pointBezier a b c d t)| t <- map (*0.0001) [0..10000] ]
+--end of No colour function--
+
+tc1 :: Colour
+tc2 :: Colour
+tc3 :: Colour
+tc4 :: Colour
+tc1 = Colour 1 1 1
+tc2 = Colour 0 1 0
+tc3 = Colour 0 0 1
+tc4 = Colour 1 1 1
+
+
+
+
+--new colour bezier function--
+bezierColour :: (Pnt,Pnt,Pnt,Pnt) -> [((GLfloat,GLfloat,GLfloat),(GLfloat,GLfloat,GLfloat))]
+bezierColour (a,b,c,d) = zip (colourListGen tc1 tc2 tc3 tc4) [pntToPoint (pointBezier a b c d t) | t <- map (*0.0001) [0..10000] ]
+--End--
 
 pointsList :: [((Float,Float),(Float,Float),(Float,Float),(Float,Float))]
 pointsList = [] 
@@ -108,6 +147,11 @@ pointsListToPntList xs = [(toPnt a, toPnt b, toPnt c, toPnt d) |(a,b,c,d) <- xs]
 
 genDrawList :: [(Pnt,Pnt,Pnt,Pnt)] -> [(GLfloat,GLfloat,GLfloat)]
 genDrawList = concatMap bezier
+
+genDrawListColour :: [(Pnt,Pnt,Pnt,Pnt)] -> [((GLfloat,GLfloat,GLfloat),(GLfloat,GLfloat,GLfloat))]
+genDrawListColour = concatMap bezierColour
+
+
 
 -- BezierLineGruop1 = genDrawList (pointsListToPntList pointsList)
 --Helper block--
@@ -166,18 +210,16 @@ pSize = 1.2
 --testing block--
 display :: DisplayCallback
 display = do 
-        let color3f r g b = color $ Color3 r g (b :: GLfloat)
-            vertex3f x y z = vertex $ Vertex3 x y (z :: GLfloat)
         clear [ColorBuffer]
         loadIdentity
         -- background -- for futuer use
 
         GL.pointSmooth $= GL.Enabled --smooth
-        GL.pointSize $= pSize
+        GL.pointSize $= pSize -- point size
 
-        forM_ (genDrawList (pointsListToPntList pointsList)) $ \(x,y,z) ->
+        forM_ (genDrawListColour (pointsListToPntList pointsList)) $ \((r,g,b),(x,y,z)) ->
                 preservingMatrix $ do
-                        color $ Color3 x y z
+                        color $ Color3 r g b
                         renderPrimitive Points $
                                 vertex $ Vertex3 x y z
         swapBuffers
