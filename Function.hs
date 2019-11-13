@@ -1,10 +1,11 @@
 module Function (
     pointBezier,
-    test
+    test,
    )
     where
 
 import Graphics.UI.GLUT
+import LSystem
 
 data Pnt = Pnt Float Float
   deriving (Eq,Ord,Show)
