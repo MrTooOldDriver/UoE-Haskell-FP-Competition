@@ -1,5 +1,6 @@
 import Graphics.UI.GLUT
 import qualified Graphics.Rendering.OpenGL as GL
+import Control.Monad
 -- import Function
 -- import LSystem For future use
 
@@ -143,14 +144,33 @@ main = do
     displayCallback $= display
     reshapeCallback $= Just (\x -> (viewport $= (Position 0 0, x)))
     mainLoop
- 
+
+--Origin--
+-- display :: DisplayCallback
+-- display = do 
+--         let color3f r g b = color $ Color3 r g (b :: GLfloat)
+--             vertex3f x y z = vertex $ Vertex3 x y (z :: GLfloat)
+--         clear [ColorBuffer]
+--         loadIdentity
+--         -- background -- for futuer use
+--         renderPrimitive Points $
+--                 mapM_ (\(x, y, z) -> vertex $ Vertex3 x y z) (genDrawList (pointsListToPntList pointsList))
+--         swapBuffers
+--End of origin--
+
+--testing block--
 display :: DisplayCallback
 display = do 
-    clear [ColorBuffer]
-    loadIdentity
-    -- background -- for futuer use
-    renderPrimitive Points $
-        mapM_ (\(x, y, z) -> vertex $ Vertex3 x y z) (genDrawList (pointsListToPntList pointsList))
-    swapBuffers
+        let color3f r g b = color $ Color3 r g (b :: GLfloat)
+            vertex3f x y z = vertex $ Vertex3 x y (z :: GLfloat)
+        clear [ColorBuffer]
+        loadIdentity
+        -- background -- for futuer use
+        forM_ (genDrawList (pointsListToPntList pointsList)) $ \(x,y,z) ->
+                -- color3f x y z
+                renderPrimitive Points $
+                         vertex $ Vertex3 x y z
+        swapBuffers
+
 
                                 
