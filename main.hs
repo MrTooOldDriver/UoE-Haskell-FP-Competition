@@ -167,9 +167,10 @@ display = do
         loadIdentity
         -- background -- for futuer use
         forM_ (genDrawList (pointsListToPntList pointsList)) $ \(x,y,z) ->
-                -- color3f x y z
-                renderPrimitive Points $
-                         vertex $ Vertex3 x y z
+                preservingMatrix $ do
+                        color $ Color3 x y z
+                        renderPrimitive Points $
+                                vertex $ Vertex3 x y z
         swapBuffers
 
 
