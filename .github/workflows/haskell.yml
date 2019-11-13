@@ -16,8 +16,8 @@ jobs:
     - name: Install dependencies
       run: |
         cabal update
-        cabal install --only-dependencies --enable-tests
         cabal install GLUT
+        cabal install --only-dependencies --enable-tests
     - name: Build
       run: |
         cabal configure --enable-tests
