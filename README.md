@@ -1,10 +1,10 @@
 # Haskell-FP-Compeition
-University of Edinburgh Inf1A FP Competition work
+University of Edinburgh 2019 Inf1A FP Competition work 
 
-TODO
+Credit:
+LSystem.hs --From tutorial7
+https://wiki.haskell.org/OpenGLTutorial1
+https://wiki.haskell.org/OpenGLTutorial2
 
-Basis Windows ...Done
-Point drawer for OpenGL ...Done
-Bezier Curves ...Done
-Colour Transformation
-Some Artwork :)
+BEAUTIFUL CODE ,COMPELLING EVIDENCE -J.R. Heard
+https://www.renci.org/wp-content/pub/tutorials/BeautifulCode.pdf
