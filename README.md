@@ -3,6 +3,19 @@ University of Edinburgh 2019 Inf1A FP Competition work
 
 #### This is a simple program that display Bezier curve with colour transformation
 
+Install package GLUT first
+```
+cabal install GLUT
+```
+
+or
+
+```
+stack install GLUT
+```
+
+
+
 main.hs -- Bezier function and main display function
 
 ColourProfile.hs -- Colour transformation function and pre-define colour profile(in RGB)
