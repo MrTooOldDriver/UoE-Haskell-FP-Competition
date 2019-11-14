@@ -15,11 +15,11 @@ jobs:
         cabal-version: '3.0'
     - name: Install dependencies
       run: |
-        cabal update
-        cabal install GLUT
+        stack update
+        stack install GLUT
     - name: Build
       run: |
-        cabal configure --enable-tests
-        cabal build
+        stack configure --enable-tests
+        stack build
     - name: Run tests
-      run: cabal test
+      run: stack test
