@@ -55,8 +55,8 @@ pointsListToPntList :: [((Float,Float),(Float,Float),(Float,Float),(Float,Float)
 pointsListToPntList xs = [(toPnt a, toPnt b, toPnt c, toPnt d) |(a,b,c,d) <- xs]
         where toPnt (y,z) = Pnt y z
 
-genDrawList :: [(Pnt,Pnt,Pnt,Pnt)] -> [(GLfloat,GLfloat,GLfloat)]
-genDrawList = concatMap bezier
+-- genDrawList :: [(Pnt,Pnt,Pnt,Pnt)] -> [(GLfloat,GLfloat,GLfloat)]
+-- genDrawList = concatMap bezier
 
 genDrawListColour :: [(Pnt,Pnt,Pnt,Pnt)] -> [((GLfloat,GLfloat,GLfloat),(GLfloat,GLfloat,GLfloat))]
 genDrawListColour = concatMap bezierColour
