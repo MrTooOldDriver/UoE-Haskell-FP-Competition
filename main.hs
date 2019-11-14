@@ -1,6 +1,7 @@
 import Graphics.UI.GLUT
 import qualified Graphics.Rendering.OpenGL as GL
 import Control.Monad
+import Function
 -- import Function
 -- import LSystem For future use
 
@@ -56,20 +57,20 @@ pointBezier p0 p1 p2 p3 t = Pnt (x0*sf0 + x1*sf1 + x2*sf2 + x3*sf3) (y0*sf0 + y1
 -- test = pointBezier (Pnt 0.0 0.0) (Pnt 0.0 1.0) (Pnt 1.0 0.0) (Pnt 1.0 1.0)
 
 
-myPoints :: [(GLfloat,GLfloat,GLfloat)]
-myPoints = [ (0.1*k , 0.1*k , 0) | k <- [0..10] ]
+-- myPoints :: [(GLfloat,GLfloat,GLfloat)]
+-- myPoints = [ (0.1*k , 0.1*k , 0) | k <- [0..10] ]
 
-myBezier :: [(GLfloat,GLfloat,GLfloat)]
-myBezier = [pntToPoint (test t)| t <- map (*0.0001) [0..10000] ]
-        where test = pointBezier (Pnt (-1.0) 0.0) (Pnt 0.0 0.3) (Pnt 0.0 (-0.3)) (Pnt 1.0 0.0)
+-- myBezier :: [(GLfloat,GLfloat,GLfloat)]
+-- myBezier = [pntToPoint (test t)| t <- map (*0.0001) [0..10000] ]
+--         where test = pointBezier (Pnt (-1.0) 0.0) (Pnt 0.0 0.3) (Pnt 0.0 (-0.3)) (Pnt 1.0 0.0)
 
-myBezier1 :: [(GLfloat,GLfloat,GLfloat)]
-myBezier1 = [pntToPoint (test t)| t <- map (*0.0001) [0..10000] ]
-        where test = pointBezier (Pnt (-1.0) 0.0) (Pnt 0.0 0.2) (Pnt 0.0 (-0.2)) (Pnt 1.0 0.0)
+-- myBezier1 :: [(GLfloat,GLfloat,GLfloat)]
+-- myBezier1 = [pntToPoint (test t)| t <- map (*0.0001) [0..10000] ]
+--         where test = pointBezier (Pnt (-1.0) 0.0) (Pnt 0.0 0.2) (Pnt 0.0 (-0.2)) (Pnt 1.0 0.0)
 
-myBezier2 :: [(GLfloat,GLfloat,GLfloat)]
-myBezier2 = [pntToPoint (test t)| t <- map (*0.0001) [0..10000] ]
-        where test = pointBezier (Pnt (-1.0) 0.0) (Pnt 0.0 0.1) (Pnt 0.0 (-0.1)) (Pnt 1.0 0.0)
+-- myBezier2 :: [(GLfloat,GLfloat,GLfloat)]
+-- myBezier2 = [pntToPoint (test t)| t <- map (*0.0001) [0..10000] ]
+--         where test = pointBezier (Pnt (-1.0) 0.0) (Pnt 0.0 0.1) (Pnt 0.0 (-0.1)) (Pnt 1.0 0.0)
 
 --No colour bezier function--
 bezier :: (Pnt,Pnt,Pnt,Pnt) -> [(GLfloat,GLfloat,GLfloat)]
