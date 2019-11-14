@@ -11,7 +11,7 @@ import LinesSet
 theBGcolor :: GL.Color3 GL.GLfloat
 pSize :: GLfloat
 
-colourProfile = redToYellow
+colourProfile = greenToBlue
 pSize = 1.7
 theBGcolor = GL.Color3 1.0 1.0 1.0
 --End of manual changing--
