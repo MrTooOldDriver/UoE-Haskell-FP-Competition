@@ -1,6 +1,6 @@
 module ColourProfile
     (
-        Colour,
+        ColourPointsRGB,
         redToYellow,
         yellowToGreen,
         greenToBlue,

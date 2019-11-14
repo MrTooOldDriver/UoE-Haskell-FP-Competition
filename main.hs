@@ -2,6 +2,7 @@ import Graphics.UI.GLUT
 import qualified Graphics.Rendering.OpenGL as GL
 import Control.Monad
 import Function
+import ColourProfile
 -- import Function
 -- import LSystem For future use
 

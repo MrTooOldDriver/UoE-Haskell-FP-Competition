@@ -1,6 +1,4 @@
 module Function (
-    pointBezier,
-    test,
    )
     where
 
