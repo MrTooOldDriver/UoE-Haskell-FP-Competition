@@ -39,3 +39,7 @@ https://wiki.haskell.org/OpenGLTutorial2
 
 BEAUTIFUL CODE ,COMPELLING EVIDENCE -J.R. Heard
 https://www.renci.org/wp-content/pub/tutorials/BeautifulCode.pdf
+
+
+#### Update 11.16.2019
+All code now avaliable to public
