@@ -1,4 +1,4 @@
-# Haskell-FP-Compeition
+# Haskell-FP-Competition
 University of Edinburgh 2019 Inf1A FP Competition work 
 
 #### This is a simple program that display Bezier curve with colour transformation
