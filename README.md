@@ -42,4 +42,4 @@ https://www.renci.org/wp-content/pub/tutorials/BeautifulCode.pdf
 
 
 #### Update 11.16.2019
-All code now avaliable to public
+All code now available to the public
