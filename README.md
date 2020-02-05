@@ -1,6 +1,8 @@
 # Haskell-FP-Competition
 University of Edinburgh 2019 Inf1A FP Competition work 
 
+![Image of preview](https://github.com/chineseiven/UoE-Haskell-FP-Competition/blob/master/OutputImage/IMG_4072.PNG)
+
 #### This is a simple program that display Bezier curve with colour transformation
 
 Install package GLUT first
